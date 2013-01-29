@@ -25,10 +25,10 @@ remote_file "/tmp/#{node['connector']['download_version']}.zip" do
 end
 
 bash "Extract mysql-connector-j" do
-	command "sudo unzip /tmp/#{node['connector']['download_version']}.zip"
+	code "sudo unzip /tmp/#{node['connector']['download_version']}.zip"
 	action :run
 end
 
 bash "Install mysql-connector-j" do
-	command "cp /tmp/#{node['connector']['download_version']}/#{node['connector']['download_version']}-bin.jar $CATALINA_HOME/lib/#{node['connector']['download_version']}/#{node['connector']['download_version']}-bin.jar"
+	code "cp /tmp/#{node['connector']['download_version']}/#{node['connector']['download_version']}-bin.jar /opt/liferay/tomcat/lib/ext"
 end
