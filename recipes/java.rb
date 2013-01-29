@@ -19,16 +19,16 @@
 # limitations under the License.
 #
 
-remote_file "/tmp/#{node['connector']['version']}.zip" do
+remote_file "/tmp/#{node['connector']['download_version']}.zip" do
 	source node['connector']['download_url']
 	action :create_if_missing
 end
 
 bash "Extract mysql-connector-j" do
-	command "sudo unzip /tmp/#{node['connector']['version']}.zip"
+	command "sudo unzip /tmp/#{node['connector']['download_version']}.zip"
 	action :run
 end
 
 bash "Install mysql-connector-j" do
-	command "cp /tmp/#{node['connector']['version']}/#{node['connector']['version']}-bin.jar $CATALINA_HOME/lib/#{node['connector']['version']}/#{node['connector']['version']}-bin.jar"
+	command "cp /tmp/#{node['connector']['download_version']}/#{node['connector']['download_version']}-bin.jar $CATALINA_HOME/lib/#{node['connector']['download_version']}/#{node['connector']['download_version']}-bin.jar"
 end
