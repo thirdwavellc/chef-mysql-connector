@@ -25,6 +25,7 @@ remote_file "/tmp/#{node['connector']['download_version']}.zip" do
 end
 
 bash "Extract mysql-connector-j" do
+	cwd "/tmp"
 	code "sudo unzip /tmp/#{node['connector']['download_version']}.zip"
 	action :run
 end
