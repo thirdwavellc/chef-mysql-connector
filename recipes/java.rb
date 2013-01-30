@@ -20,7 +20,7 @@
 #
 
 bash "Stopping Tomcat" do
-	code "sudo bash /opt/liferay/tomcat/bin/shutdown.sh"
+	code "sudo pkill -9 java"
 end
 
 remote_file "/tmp/#{node['connector']['download_version']}.zip" do
@@ -36,14 +36,6 @@ end
 
 bash "Install mysql-connector-j" do
 	code "cp /tmp/#{node['connector']['download_version']}/#{node['connector']['download_version']}-bin.jar /opt/liferay/tomcat/lib/ext"
-end
-
-bash "Restarting Tomcat" do
-	code "sudo bash /opt/liferay/tomcat/bin/startup.sh"
-end
-
-bash "Stopping Tomcat" do
-	code "sudo bash /opt/liferay/tomcat/bin/shutdown.sh"
 end
 
 bash "Restarting Tomcat" do
