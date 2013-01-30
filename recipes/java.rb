@@ -41,3 +41,11 @@ end
 bash "Restarting Tomcat" do
 	code "sudo bash /opt/liferay/tomcat/bin/startup.sh"
 end
+
+bash "Stopping Tomcat" do
+	code "sudo bash /opt/liferay/tomcat/bin/shutdown.sh"
+end
+
+bash "Restarting Tomcat" do
+	code "sudo bash /opt/liferay/tomcat/bin/startup.sh"
+end
