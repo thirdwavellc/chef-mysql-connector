@@ -26,12 +26,13 @@ end
 remote_file "/tmp/#{node['connector']['download_version']}.zip" do
 	source node['connector']['download_url']
 	action :create_if_missing
+	notifies :run, "bash[extract-mysql-connector-j", :immediately
 end
 
-bash "Extract mysql-connector-j" do
+bash "extract-mysql-connector-j" do
 	cwd "/tmp"
 	code "sudo unzip /tmp/#{node['connector']['download_version']}.zip"
-	action :run
+	action :nothing
 end
 
 bash "Install mysql-connector-j" do
