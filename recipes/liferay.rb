@@ -40,6 +40,6 @@ bash "Install mysql-connector-j" do
 	code "cp /tmp/#{node['connector']['download_version']}/#{node['connector']['download_version']}-bin.jar /opt/liferay/tomcat/lib/ext"
 end
 
-bash "Restarting Tomcat" do
+bash "Restarting Liferay" do
 	code "sudo /etc/init.d/liferay start"
 end
