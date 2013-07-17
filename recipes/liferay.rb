@@ -5,6 +5,7 @@
 # Copyright 2013, Thirdwave, LLC
 # Authors:
 # 		Adam Krone <adam.krone@thirdwavellc.com>
+#		Orin Fink <orin.fink@thirdwavellc.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,8 +20,8 @@
 # limitations under the License.
 #
 
-bash "Stopping Tomcat" do
-	code "sudo pkill -9 java"
+bash "Stopping Liferay" do
+	code "sudo /etc/init.d/liferay stop"
 end
 
 remote_file "/tmp/#{node['connector']['download_version']}.zip" do
@@ -40,5 +41,5 @@ bash "Install mysql-connector-j" do
 end
 
 bash "Restarting Tomcat" do
-	code "sudo bash /opt/liferay/tomcat/bin/startup.sh"
+	code "sudo /etc/init.d/liferay start"
 end
