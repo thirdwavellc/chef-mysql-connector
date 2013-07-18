@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: mysql-connector
-# Recipe:: liferay
+# Recipe:: java
 #
 # Copyright 2013, Thirdwave, LLC
 # Authors:
@@ -20,10 +20,6 @@
 # limitations under the License.
 #
 
-bash "Stopping Liferay" do
-	code "sudo /etc/init.d/liferay stop"
-end
-
 remote_file "/tmp/#{node['connector']['download_version']}.zip" do
 	source node['connector']['download_url']
 	action :create_if_missing
@@ -38,8 +34,4 @@ end
 
 bash "Install mysql-connector-j" do
 	code "cp /tmp/#{node['connector']['download_version']}/#{node['connector']['download_version']}-bin.jar /opt/liferay/tomcat/lib/ext"
-end
-
-bash "Restarting Liferay" do
-	code "sudo /etc/init.d/liferay start"
 end
